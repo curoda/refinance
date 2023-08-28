@@ -2,7 +2,7 @@ import streamlit as st
 import numpy_financial as npf
 
 def monthly_payment(P, r, n):
-    """Calculate monthly payment for a mortgage."""
+    """Calculate monthly payment for a mortgage..."""
     return -npf.pmt(r, n, P)
 
 def remaining_balance(P, r, n, months_paid):
