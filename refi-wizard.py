@@ -1,5 +1,5 @@
 import streamlit as st
-import numpy_financial as npf
+import numpy-financial as npf
 
 def monthly_payment(P, r, n):
     """Calculate monthly payment for a mortgage..."""
