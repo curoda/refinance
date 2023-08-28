@@ -1,7 +1,7 @@
-st.cache(clear_cache=True)
-
 import streamlit as st
 import numpy_financial as npf
+
+st.cache(clear_cache=True)
 
 def monthly_payment(P, r, n):
     """Calculate monthly payment for a mortgage."""
