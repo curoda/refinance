@@ -1,4 +1,5 @@
 import streamlit as st
+import numpy as np
 import numpy_financial as npf
 
 st.cache(clear_cache=True)
