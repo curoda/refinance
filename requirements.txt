@@ -1,2 +1,2 @@
 numpy
-numpy-financial
+numpy_financial
