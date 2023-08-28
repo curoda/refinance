@@ -1,13 +1,13 @@
 import streamlit as st
-import numpy as np
+import numpy_financial as npf
 
 def monthly_payment(P, r, n):
-    """Calculate monthly payment for a mortgage using the formula."""
-    return P * r * (1 + r)**n / ((1 + r)**n - 1)
+    """Calculate monthly payment for a mortgage."""
+    return -npf.pmt(r, n, P)
 
 def remaining_balance(P, r, n, months_paid):
     """Calculate remaining balance of a mortgage after a certain number of payments."""
-    return P * ((1 + r)**n - (1 + r)**months_paid) / ((1 + r)**n)
+    return -npf.fv(r, months_paid, monthly_payment(P, r, n), P)
 
 def main():
     st.title("Mortgage Refinancing Effective Interest Rate Calculator")
@@ -33,8 +33,7 @@ def main():
 
     # Calculate total interest for the refinanced loan
     M2 = monthly_payment(balance_before_refinance, r2, n2)
-    total_paid_after_refinance = M2 * n2
-    interest_after_refinance = total_paid_after_refinance - balance_before_refinance
+    interest_after_refinance = M2 * n2 - balance_before_refinance
 
     # Display results with better formatting
     st.subheader("Results")
@@ -42,7 +41,8 @@ def main():
     st.write(f"Total interest paid after refinancing: ${interest_after_refinance:,.2f}")
     
     # Improved effective interest rate calculation
-    total_interest = interest_before_refinance + interest_after_refinance
+    total_paid = total_paid_before_refinance + M2 * n2
+    total_interest = total_paid - P
     effective_rate_annual = (total_interest / (P * (n1_years + n2_years))) * 100
     st.write(f"Effective interest rate over the entire period: {effective_rate_annual:.2f}%")
 
