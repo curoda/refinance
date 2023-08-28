@@ -1,3 +1,5 @@
+st.cache(clear_cache=True)
+
 import streamlit as st
 import numpy_financial as npf
 
