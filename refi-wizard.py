@@ -1,13 +1,13 @@
 import streamlit as st
-import numpy_financial as npf
+import numpy as np
 
 def monthly_payment(P, r, n):
-    """Calculate monthly payment for a mortgage..."""
-    return -npf.pmt(r, n, P)
+    """Calculate monthly payment for a mortgage using the formula."""
+    return P * r * (1 + r)**n / ((1 + r)**n - 1)
 
 def remaining_balance(P, r, n, months_paid):
     """Calculate remaining balance of a mortgage after a certain number of payments."""
-    return -npf.fv(r, months_paid, monthly_payment(P, r, n), P)
+    return P * ((1 + r)**n - (1 + r)**months_paid) / ((1 + r)**n)
 
 def main():
     st.title("Mortgage Refinancing Effective Interest Rate Calculator")
